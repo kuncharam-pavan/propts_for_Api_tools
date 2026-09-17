@@ -1,0 +1,1922 @@
+# REUSABLE MERN PRODUCTION IMPLEMENTATION RULES
+
+This is a reusable implementation specification for building **complete, real-world, production-style MERN applications with Antigravity**.
+
+These rules must be applied whenever an actual company/project implementation plan is provided.
+
+---
+
+# 1. MOST IMPORTANT RULE — PROJECT PLAN IS THE SOURCE OF TRUTH
+
+The actual project implementation plan provided by the company determines:
+
+**WHAT must be built.**
+
+This reusable specification determines:
+
+**HOW it must be built.**
+
+The implementation plan may change from project to project.
+
+Therefore:
+
+```text
+COMPANY PROJECT PLAN
+        ↓
+Understand requirements
+        ↓
+Identify required features
+        ↓
+Map features to architecture
+        ↓
+Implement complete functionality
+        ↓
+Apply these reusable development standards
+        ↓
+Test complete application
+```
+
+Do NOT use the same fixed feature set for every project.
+
+Do NOT force Food Delivery features into a Travel application.
+
+Do NOT force Travel features into an E-Commerce application.
+
+Do NOT force unnecessary features into a project simply because they appear in this reusable specification.
+
+---
+
+# 2. FIRST READ THE ENTIRE IMPLEMENTATION PLAN
+
+Before writing code:
+
+1. Read the complete project implementation plan.
+2. Understand the business requirements.
+3. Identify all user roles.
+4. Identify all entities/models.
+5. Identify all required pages.
+6. Identify all required APIs.
+7. Identify CRUD requirements.
+8. Identify authentication requirements.
+9. Identify authorization requirements.
+10. Identify search requirements.
+11. Identify filtering requirements.
+12. Identify pagination requirements.
+13. Identify image/file requirements.
+14. Identify dashboard requirements.
+15. Identify relationships between entities.
+16. Identify frontend requirements.
+17. Identify backend requirements.
+18. Identify database requirements.
+19. Identify validation requirements.
+20. Identify error-handling requirements.
+21. Identify deployment/environment requirements.
+
+Create an internal requirement checklist before implementation.
+
+Every applicable requirement must eventually be implemented.
+
+---
+
+# 3. REQUIREMENT COVERAGE
+
+For every requirement in the company plan:
+
+```text
+Requirement
+     ↓
+Architecture mapping
+     ↓
+Frontend implementation
+     ↓
+Backend implementation
+     ↓
+Database implementation
+     ↓
+API integration
+     ↓
+Validation
+     ↓
+Error handling
+     ↓
+UI feedback
+     ↓
+Testing
+```
+
+Do not mark a feature complete merely because a button or page exists.
+
+A feature is complete only when the complete flow works.
+
+Example:
+
+```text
+Create Product
+      ↓
+React form
+      ↓
+Axios POST
+      ↓
+Express route
+      ↓
+Authentication
+      ↓
+Authorization
+      ↓
+Validation
+      ↓
+Controller
+      ↓
+Service
+      ↓
+MongoDB
+      ↓
+Response
+      ↓
+React state update
+      ↓
+Toast notification
+      ↓
+Updated UI
+```
+
+---
+
+# 4. NO STATIC OR MOCK APPLICATION
+
+IMPORTANT:
+
+The final application must NOT be a static demo.
+
+Do NOT use fake project data as the primary application functionality.
+
+Do NOT hardcode database records into React.
+
+Do NOT create fake APIs that return static arrays.
+
+Do NOT create buttons that do nothing.
+
+Do NOT create forms that only display success messages without saving data.
+
+Do NOT create dashboards using hardcoded statistics when those statistics should come from the database.
+
+Do NOT stop after creating the UI.
+
+The application must use:
+
+```text
+React
+   ↓
+Axios
+   ↓
+Express
+   ↓
+MongoDB
+   ↓
+Real database data
+   ↓
+React UI
+```
+
+If seed/demo data is required for development, it may be created separately, but the application itself must operate using the real backend/database.
+
+---
+
+# 5. COMPLETE FULL-STACK IMPLEMENTATION
+
+Every applicable feature must be implemented across the complete stack.
+
+```text
+Frontend
+   ↓
+API
+   ↓
+Backend
+   ↓
+Business Logic
+   ↓
+Database
+```
+
+Do not implement only:
+
+```text
+Frontend UI
+```
+
+or only:
+
+```text
+Backend API
+```
+
+unless the project plan explicitly requests only one side.
+
+---
+
+# 6. PROJECT STRUCTURE
+
+Use separate frontend and backend applications.
+
+```text
+project/
+│
+├── frontend/
+│
+├── backend/
+│
+├── README.md
+└── .gitignore
+```
+
+Keep frontend and backend responsibilities separate.
+
+---
+
+# 7. FRONTEND — REACT
+
+Use:
+
+```text
+React
+Vite
+JavaScript
+React Router DOM
+Axios
+Context API
+CSS
+React Toastify
+```
+
+Do not introduce unnecessary libraries.
+
+Use additional libraries only when they provide a genuine project requirement or meaningful implementation benefit.
+
+---
+
+# 8. REACT HOOKS
+
+Use hooks where they solve real problems.
+
+Applicable hooks include:
+
+```text
+useState
+useEffect
+useContext
+useReducer
+useMemo
+useCallback
+useRef
+useNavigate
+useParams
+useLocation
+useSearchParams
+```
+
+Do NOT artificially use every hook.
+
+Each hook must have a meaningful purpose.
+
+---
+
+# 9. useState
+
+Use `useState` for simple component state.
+
+Examples:
+
+```text
+Form values
+Search text
+Loading
+Error
+Modal state
+Selected item
+Filter values
+Pagination state
+UI state
+```
+
+---
+
+# 10. useEffect
+
+Use `useEffect` for actual side effects.
+
+Examples:
+
+```text
+Initial API requests
+Authentication verification
+Browser event listeners
+External synchronization
+Cleanup
+```
+
+Do not use `useEffect` for logic that can be handled directly inside an event handler.
+
+---
+
+# 11. useContext
+
+Use Context API for genuine global/application state.
+
+Examples:
+
+```text
+Authentication
+Current user
+Current role
+Global application state
+```
+
+Possible structure:
+
+```text
+context/
+├── AuthContext.jsx
+└── AppContext.jsx
+```
+
+Authentication context may contain:
+
+```text
+user
+role
+isAuthenticated
+loading
+login()
+logout()
+```
+
+---
+
+# 12. useReducer
+
+Use `useReducer` when multiple related state values need coordinated management in one place.
+
+Example:
+
+```js
+const initialState = {
+    loading: false,
+    error: null,
+    data: [],
+    selectedItem: null
+};
+```
+
+Use it for complex related state.
+
+Do NOT use `useReducer` for every small state value.
+
+---
+
+# 13. useMemo
+
+Use `useMemo` when there is meaningful expensive or repeated calculation.
+
+Examples:
+
+```text
+Complex filtering
+Derived statistics
+Large calculations
+Computed dashboard values
+```
+
+Do not use it unnecessarily.
+
+---
+
+# 14. useCallback
+
+Use `useCallback` when stable function references provide a real benefit.
+
+Examples:
+
+```text
+Callbacks passed to memoized children
+Performance-sensitive handlers
+Reusable callbacks
+```
+
+Do not wrap every function with `useCallback`.
+
+---
+
+# 15. useRef
+
+Use `useRef` when a mutable reference or DOM reference is actually required.
+
+Examples:
+
+```text
+File input
+Input focus
+DOM element
+Previous value
+```
+
+---
+
+# 16. REACT ROUTER
+
+Use React Router DOM for navigation.
+
+Use appropriate features:
+
+```text
+BrowserRouter
+Routes
+Route
+Link
+NavLink
+useNavigate
+useParams
+useLocation
+useSearchParams
+```
+
+Use protected routes where authentication is required.
+
+Use role-based routes where the project contains multiple roles.
+
+Example:
+
+```text
+ProtectedRoute
+        ↓
+Authentication check
+        ↓
+RoleRoute
+        ↓
+Role-specific dashboard
+```
+
+---
+
+# 17. ROLE-BASED ARCHITECTURE
+
+If the project contains multiple roles, create separate role-specific structures.
+
+For example:
+
+```text
+pages/
+├── user/
+├── admin/
+├── restaurant/
+└── deliveryPartner/
+```
+
+Only create roles that actually exist in the company project plan.
+
+Do not invent roles.
+
+Each role must receive only the functionality permitted for that role.
+
+---
+
+# 18. PROTECTED ROUTES
+
+Authenticated pages must not be publicly accessible when authentication is required.
+
+Example:
+
+```text
+/login
+/signup
+
+/user/dashboard
+/admin/dashboard
+/restaurant/dashboard
+```
+
+The route protection must be connected to real authentication state.
+
+Do not merely hide pages from the navigation menu.
+
+Backend authorization must also protect the APIs.
+
+---
+
+# 19. AXIOS — API COMMUNICATION
+
+IMPORTANT:
+
+Do NOT use:
+
+```js
+fetch()
+```
+
+Use Axios for all frontend API communication.
+
+Create centralized Axios configuration.
+
+Example:
+
+```text
+services/
+└── api.js
+```
+
+Example:
+
+```js
+const response = await axios.get(
+    "http://localhost:3000/user/getUser",
+    {
+        withCredentials: true
+    }
+);
+```
+
+All API communication must use Axios.
+
+---
+
+# 20. HTTP-ONLY COOKIE AUTHENTICATION
+
+When authentication is required:
+
+```text
+Login
+   ↓
+Backend validates credentials
+   ↓
+JWT generated
+   ↓
+JWT stored in HTTP-only cookie
+   ↓
+Browser automatically sends cookie
+   ↓
+Authentication middleware verifies JWT
+```
+
+Do not store authentication tokens in:
+
+```text
+localStorage
+sessionStorage
+```
+
+when the project requires secure cookie-based authentication.
+
+Use:
+
+```text
+withCredentials: true
+```
+
+where required.
+
+---
+
+# 21. AUTHENTICATION
+
+Implement real authentication when required.
+
+Typical flow:
+
+```text
+Signup
+   ↓
+Validate input
+   ↓
+Hash password
+   ↓
+Save user
+   ↓
+Login
+   ↓
+Verify password
+   ↓
+Generate JWT
+   ↓
+HTTP-only cookie
+```
+
+Implement:
+
+```text
+Signup
+Login
+Logout
+Current user
+Password hashing
+Authentication middleware
+```
+
+Only implement additional authentication features if required by the project.
+
+---
+
+# 22. AUTHORIZATION
+
+Authentication and authorization are different.
+
+Authentication:
+
+```text
+Who are you?
+```
+
+Authorization:
+
+```text
+What are you allowed to do?
+```
+
+Implement role-based authorization when roles exist.
+
+Example:
+
+```text
+user
+admin
+restaurant
+deliveryPartner
+```
+
+Only create roles required by the project.
+
+---
+
+# 23. PASSWORD SECURITY
+
+Never store plain-text passwords.
+
+Use bcrypt or an equivalent secure password hashing mechanism.
+
+```text
+Password
+   ↓
+bcrypt hash
+   ↓
+MongoDB
+```
+
+During login:
+
+```text
+Entered password
+       ↓
+bcrypt compare
+       ↓
+Stored hash
+```
+
+---
+
+# 24. BACKEND — NODE + EXPRESS
+
+Use:
+
+```text
+Node.js
+Express.js
+MongoDB
+Mongoose
+```
+
+Use a clean MVC/service architecture.
+
+---
+
+# 25. BACKEND STRUCTURE
+
+Recommended structure:
+
+```text
+backend/
+│
+├── config/
+│   ├── db.js
+│   ├── cors.js
+│   └── imagekit.js
+│
+├── controllers/
+│
+├── models/
+│
+├── routes/
+│
+├── middleware/
+│
+├── services/
+│
+├── validators/
+│
+├── utils/
+│
+├── uploads/
+│
+├── app.js
+├── server.js
+├── .env
+├── .gitignore
+└── package.json
+```
+
+Create project-specific files according to the implementation plan.
+
+---
+
+# 26. MVC + SERVICE ARCHITECTURE
+
+Use:
+
+```text
+Route
+  ↓
+Middleware
+  ↓
+Controller
+  ↓
+Service
+  ↓
+Model
+  ↓
+MongoDB
+```
+
+Controllers should not contain unnecessary business logic.
+
+Business logic should be placed in services when appropriate.
+
+---
+
+# 27. MONGODB + MONGOOSE
+
+Use MongoDB as the actual database.
+
+Use Mongoose for:
+
+```text
+Schemas
+Models
+Relationships
+Validation
+Queries
+Population
+```
+
+Create models based on the actual project requirements.
+
+Do not create unnecessary models.
+
+---
+
+# 28. CRUD
+
+When CRUD is required, implement the complete flow.
+
+```text
+CREATE
+READ
+UPDATE
+DELETE
+```
+
+Each operation must have:
+
+```text
+Frontend
+Backend route
+Controller
+Service
+Database operation
+Validation
+Error handling
+UI feedback
+```
+
+---
+
+# 29. HTTP STATUS CODES
+
+Use proper status codes.
+
+```text
+200 → Successful GET / UPDATE
+201 → Successful CREATE
+204 → Successful DELETE with no response body
+400 → Bad Request
+401 → Authentication required / invalid authentication
+403 → Authenticated but not authorized
+404 → Resource or route not found
+409 → Duplicate / conflict
+422 → Validation error
+500 → Internal server error
+```
+
+Do not return `200` for every situation.
+
+Use status codes according to the actual result.
+
+---
+
+# 30. GLOBAL ERROR HANDLING
+
+Create centralized error handling.
+
+Example flow:
+
+```text
+Route
+ ↓
+Controller
+ ↓
+Service
+ ↓
+Error
+ ↓
+Global Error Handler
+ ↓
+Consistent JSON Response
+```
+
+Errors should not be duplicated unnecessarily throughout controllers.
+
+---
+
+# 31. 404 HANDLING
+
+Implement a global route-not-found handler.
+
+Example:
+
+```text
+Unknown API route
+      ↓
+404 middleware
+      ↓
+JSON error response
+```
+
+Frontend should also have a proper Not Found page where appropriate.
+
+---
+
+# 32. CONSISTENT API RESPONSES
+
+Use a consistent response structure.
+
+Example:
+
+```json
+{
+    "success": true,
+    "message": "User retrieved successfully",
+    "data": {}
+}
+```
+
+Error example:
+
+```json
+{
+    "success": false,
+    "message": "User not found"
+}
+```
+
+Adapt the structure if the company implementation plan specifies a different response contract.
+
+---
+
+# 33. VALIDATION
+
+Validate data on the backend.
+
+Frontend validation should improve user experience.
+
+Backend validation is mandatory for security and correctness.
+
+Validate:
+
+```text
+Required fields
+Email
+Password
+IDs
+Numbers
+Enums
+File requirements
+Business rules
+```
+
+Do not trust frontend validation alone.
+
+---
+
+# 34. SEARCH
+
+If search is required:
+
+```text
+Frontend search input
+        ↓
+Axios request
+        ↓
+Backend search API
+        ↓
+MongoDB query
+        ↓
+Filtered result
+        ↓
+Frontend
+```
+
+Do not load all database records unnecessarily and perform large-scale searching only on the client when backend searching is appropriate.
+
+---
+
+# 35. FILTERING
+
+If filtering is required, implement filters based on actual project data.
+
+Examples:
+
+```text
+Category
+Role
+Type
+Price
+Location
+Status
+Date
+Rating
+```
+
+Only use filters relevant to the project.
+
+---
+
+# 36. PAGINATION
+
+Do not load large datasets unnecessarily.
+
+Use backend pagination.
+
+Example:
+
+```text
+GET /travel?page=1&limit=10
+```
+
+Backend:
+
+```text
+page = 1
+limit = 10
+skip = (page - 1) * limit
+```
+
+Response should include useful metadata when required:
+
+```json
+{
+    "data": [],
+    "pagination": {
+        "currentPage": 1,
+        "totalPages": 5,
+        "totalItems": 50,
+        "limit": 10
+    }
+}
+```
+
+Frontend should provide appropriate controls such as:
+
+```text
+Previous
+1
+2
+3
+4
+Next
+```
+
+Do not load the entire dataset just to create pagination on the frontend when backend pagination is appropriate.
+
+---
+
+# 37. LAZY LOADING
+
+Avoid loading unnecessary large amounts of data during application startup.
+
+Load data based on:
+
+```text
+Current page
+User activity
+Selected resource
+Pagination
+Required dashboard information
+```
+
+Use React lazy loading/code splitting where appropriate:
+
+```text
+React.lazy()
+Suspense
+```
+
+Do not lazy-load tiny components unnecessarily.
+
+---
+
+# 38. IMAGE UPLOAD
+
+If the project requires image uploads, implement real image uploading.
+
+Use the required image-storage service from the project specification.
+
+If ImageKit is required:
+
+```text
+Frontend
+   ↓
+Multipart/FormData
+   ↓
+Axios
+   ↓
+Multer / upload middleware
+   ↓
+ImageKit
+   ↓
+Image URL
+   ↓
+MongoDB
+```
+
+Implement applicable:
+
+```text
+Upload
+Update
+Delete
+```
+
+Do not pretend an image was uploaded if it only exists in a local frontend state.
+
+---
+
+# 39. IMAGEKIT CONFIGURATION
+
+When ImageKit is required, configure it through environment variables.
+
+Example:
+
+```env
+IMAGEKIT_PUBLIC_KEY=your_public_key
+IMAGEKIT_PRIVATE_KEY=your_private_key
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_id
+```
+
+Never expose private credentials in frontend code.
+
+---
+
+# 40. CORS
+
+Configure CORS correctly between frontend and backend.
+
+Example:
+
+```text
+Frontend
+http://localhost:5173
+
+Backend
+http://localhost:3000
+```
+
+When cookie authentication is used, configure credentials correctly on both sides.
+
+---
+
+# 41. ENVIRONMENT VARIABLES
+
+Use `.env` for secrets and environment-specific configuration.
+
+Example:
+
+```env
+PORT=3000
+NODE_ENV=development
+
+MONGO_URI=mongodb://127.0.0.1:27017/ProjectDatabase
+
+JWT_SECRET=your_long_random_secret
+JWT_EXPIRES_IN=1h
+
+IMAGEKIT_PUBLIC_KEY=your_public_key
+IMAGEKIT_PRIVATE_KEY=your_private_key
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_id
+
+CLIENT_URL=http://localhost:5173
+```
+
+Adapt variables to the actual project.
+
+Never hardcode secrets.
+
+---
+
+# 42. .gitignore
+
+At minimum, when applicable:
+
+```text
+node_modules/
+.env
+uploads/
+dist/
+```
+
+Never commit secrets.
+
+---
+
+# 43. LOADING STATES
+
+Every asynchronous operation that can take time should have an appropriate loading state.
+
+Examples:
+
+```text
+Loading users...
+Loading products...
+Uploading image...
+Deleting...
+Updating...
+Submitting...
+```
+
+Avoid leaving users wondering whether the application is working.
+
+---
+
+# 44. ERROR STATES
+
+Every important API operation should handle errors.
+
+Display meaningful user-facing messages.
+
+Do not expose internal stack traces or sensitive backend information to users.
+
+---
+
+# 45. TOAST NOTIFICATIONS
+
+Use React Toastify when appropriate for operation feedback.
+
+Examples:
+
+```text
+Login successful
+Signup successful
+Created successfully
+Updated successfully
+Deleted successfully
+Upload successful
+Request failed
+Unauthorized
+Validation failed
+```
+
+Do not show success notifications when the backend operation actually failed.
+
+---
+
+# 46. RESPONSIVE UI
+
+The application must work properly on:
+
+```text
+Desktop
+Tablet
+Mobile
+```
+
+Do not build only a desktop layout.
+
+Use responsive CSS.
+
+---
+
+# 47. REAL DASHBOARDS
+
+Dashboards must use actual backend/database information when the project requires dashboard data.
+
+Do NOT create:
+
+```text
+Users: 1,250
+Orders: 560
+Revenue: ₹5,00,000
+```
+
+as hardcoded values unless the project explicitly requires static content.
+
+Dashboard values should come from real API/database data.
+
+---
+
+# 48. SEARCH AND DASHBOARD DATA
+
+If the project requires searching dashboard data:
+
+```text
+Dashboard
+   ↓
+Search input
+   ↓
+Axios
+   ↓
+Backend search endpoint
+   ↓
+MongoDB
+   ↓
+Results
+```
+
+Implement role-specific search when applicable.
+
+---
+
+# 49. FRONTEND SERVICE LAYER
+
+Avoid putting every Axios request directly inside large components.
+
+Use services where appropriate.
+
+Example:
+
+```text
+services/
+├── api.js
+├── authService.js
+├── userService.js
+├── adminService.js
+└── project-specific services
+```
+
+Services should communicate with the backend.
+
+Components should focus primarily on UI and user interaction.
+
+---
+
+# 50. CUSTOM HOOKS
+
+Create custom hooks when logic is reused or becomes complex.
+
+Examples:
+
+```text
+useAuth()
+useApi()
+usePagination()
+useDebounce()
+```
+
+Only create hooks that solve real problems.
+
+---
+
+# 51. COMPONENT REUSABILITY
+
+Create reusable components where appropriate.
+
+Examples:
+
+```text
+Navbar
+Footer
+Loader
+ErrorMessage
+Pagination
+Search
+Filters
+Modal
+Form components
+Cards
+Tables
+```
+
+Do not duplicate the same UI logic unnecessarily.
+
+---
+
+# 52. SECURITY
+
+Follow secure development practices.
+
+Examples:
+
+```text
+HTTP-only cookies
+Password hashing
+Backend authorization
+Input validation
+Environment variables
+CORS configuration
+Safe error responses
+```
+
+Never trust frontend role information alone.
+
+Backend authorization must enforce permissions.
+
+---
+
+# 53. DATABASE RELATIONSHIPS
+
+If entities are related, model those relationships properly.
+
+For example:
+
+```text
+User
+  ↓
+Orders
+  ↓
+Restaurant
+  ↓
+Food Items
+```
+
+or:
+
+```text
+User
+  ↓
+Reviews
+  ↓
+Travel Destination
+```
+
+Use Mongoose references/population where appropriate.
+
+Do not duplicate large amounts of relational data unnecessarily.
+
+---
+
+# 54. BUSINESS LOGIC
+
+Business rules from the company plan must be implemented in the backend.
+
+Example:
+
+```text
+User creates order
+        ↓
+Validate order
+        ↓
+Check availability
+        ↓
+Apply business rules
+        ↓
+Save order
+```
+
+Do not rely solely on frontend checks for business rules.
+
+---
+
+# 55. NO FAKE COMPLETION
+
+Antigravity must NOT say:
+
+```text
+Feature implemented
+```
+
+if only the UI was created.
+
+A feature is complete only when the required end-to-end flow works.
+
+Before considering the project complete, verify:
+
+```text
+UI
+ ↓
+Axios
+ ↓
+API
+ ↓
+Middleware
+ ↓
+Controller
+ ↓
+Service
+ ↓
+Database
+ ↓
+Response
+ ↓
+UI update
+```
+
+---
+
+# 56. TESTING
+
+Before declaring the application complete, test the important flows.
+
+At minimum, where applicable:
+
+```text
+Signup
+Login
+Logout
+Authentication
+Authorization
+Create
+Read
+Update
+Delete
+Search
+Filter
+Pagination
+Image upload
+Image update
+Image deletion
+Role-specific access
+Error handling
+Invalid input
+Unauthorized access
+404 routes
+```
+
+Test both:
+
+```text
+Success cases
+Failure cases
+```
+
+Fix errors before completion.
+
+---
+
+# 57. DO NOT STOP AT SCAFFOLDING
+
+Creating:
+
+```text
+folders
+files
+components
+routes
+models
+```
+
+does NOT mean the project is complete.
+
+Antigravity must continue implementation until the actual required functionality is connected and working.
+
+---
+
+# 58. DO NOT STOP AT STATIC UI
+
+A visually complete frontend is not considered a completed project.
+
+The final project must connect:
+
+```text
+Frontend
+      ↓
+Backend
+      ↓
+Database
+```
+
+unless the company plan explicitly excludes one of these layers.
+
+---
+
+# 59. DO NOT CHANGE THE COMPANY REQUIREMENTS
+
+Do not remove, simplify, or replace a required feature merely because it is difficult.
+
+If a requirement is technically challenging:
+
+```text
+Understand requirement
+        ↓
+Design proper implementation
+        ↓
+Implement it
+        ↓
+Test it
+```
+
+Do not replace it with:
+
+```text
+Placeholder
+Static data
+Fake button
+Temporary UI
+```
+
+---
+
+# 60. DO NOT INVENT FEATURES
+
+If a feature is not required and does not support the application's architecture:
+
+```text
+DO NOT ADD IT.
+```
+
+For example, if the company plan is:
+
+```text
+Travel Management
+```
+
+do not automatically add:
+
+```text
+Food delivery
+Ride booking
+Restaurant management
+Delivery partner
+```
+
+unless the actual plan requires them.
+
+---
+
+# 61. FEATURE DECISION SYSTEM
+
+For every reusable requirement:
+
+```text
+Is this required by the company project?
+              │
+        ┌─────┴─────┐
+        │           │
+       YES          NO
+        │           │
+        ↓           ↓
+ Implement      Do not add
+ completely     unnecessarily
+```
+
+For architectural requirements:
+
+```text
+Is this architecture useful for this project?
+              │
+        ┌─────┴─────┐
+        │           │
+       YES          NO
+        │           │
+        ↓           ↓
+ Use it        Do not force it
+```
+
+---
+
+# 62. PRODUCTION-STYLE QUALITY
+
+Build the application as if it were going to be maintained by another developer.
+
+Prioritize:
+
+```text
+Clean architecture
+Readable code
+Reusable components
+Proper separation of concerns
+Validation
+Security
+Error handling
+Consistent APIs
+Responsive UI
+Maintainability
+Real database integration
+```
+
+Avoid:
+
+```text
+Huge components
+Duplicate code
+Hardcoded database data
+Unused imports
+Unused dependencies
+Unused hooks
+Fake functionality
+Temporary console logs
+Dead code
+```
+
+---
+
+# 63. PROJECT-SPECIFIC ADAPTATION
+
+The reusable structure must adapt to the company project.
+
+For example:
+
+```text
+Company Plan
+     ↓
+Travel Project
+     ↓
+Travel models
+Travel controllers
+Travel routes
+Travel services
+Travel pages
+Travel search
+Travel filters
+Travel reviews
+```
+
+Another company plan:
+
+```text
+Company Plan
+     ↓
+Food Project
+     ↓
+Food models
+Restaurant models
+Order models
+Delivery models
+Food pages
+Order APIs
+```
+
+The architecture adapts to the project.
+
+Do not blindly copy an unrelated project's files.
+
+---
+
+# 64. FINAL PROJECT AUDIT
+
+Before saying:
+
+```text
+PROJECT COMPLETE
+```
+
+perform a final audit.
+
+Check:
+
+### Requirements
+
+```text
+[ ] Every company requirement identified
+[ ] Every applicable requirement implemented
+[ ] No required feature skipped
+[ ] No unrelated feature added
+```
+
+### Frontend
+
+```text
+[ ] React implemented
+[ ] Routing implemented
+[ ] Protected routes where required
+[ ] Role routes where required
+[ ] Axios used
+[ ] No fetch()
+[ ] Context where required
+[ ] Appropriate hooks used
+[ ] Loading states
+[ ] Error states
+[ ] Toast notifications
+[ ] Responsive UI
+[ ] Pagination where required
+[ ] Search where required
+[ ] Filters where required
+[ ] Lazy loading where useful
+```
+
+### Backend
+
+```text
+[ ] Express server
+[ ] MongoDB connection
+[ ] Mongoose models
+[ ] Routes
+[ ] Controllers
+[ ] Services
+[ ] Middleware
+[ ] Authentication
+[ ] Authorization
+[ ] Validation
+[ ] Global error handler
+[ ] 404 handler
+[ ] Proper status codes
+[ ] Consistent responses
+```
+
+### Security
+
+```text
+[ ] Password hashing
+[ ] HTTP-only cookies where required
+[ ] JWT authentication
+[ ] Backend authorization
+[ ] Environment variables
+[ ] CORS configuration
+[ ] No secrets in source code
+```
+
+### Database
+
+```text
+[ ] Real MongoDB connection
+[ ] Real CRUD
+[ ] Relationships where required
+[ ] Real search
+[ ] Real filtering
+[ ] Real pagination
+```
+
+### Images
+
+```text
+[ ] Real upload where required
+[ ] Real storage integration
+[ ] Update/delete where required
+[ ] Database stores image reference
+```
+
+### Testing
+
+```text
+[ ] Success flows tested
+[ ] Failure flows tested
+[ ] Invalid input tested
+[ ] Unauthorized access tested
+[ ] API errors tested
+[ ] Frontend errors tested
+```
+
+---
+
+# 65. README
+
+Create the README only after the project implementation is substantially complete.
+
+The README must describe the actual project that was built.
+
+Include:
+
+```text
+Project Overview
+Features
+Technology Stack
+Frontend Structure
+Backend Structure
+Database Models
+Authentication Flow
+Authorization Flow
+API Overview
+CRUD Flow
+Search Flow
+Filter Flow
+Pagination Flow
+Image Upload Flow
+Error Handling
+Environment Variables
+Installation
+Running Frontend
+Running Backend
+Testing
+```
+
+Do not write README claims for features that were not actually implemented.
+
+---
+
+# 66. SIMPLE ARCHITECTURE DIAGRAM
+
+Include diagrams where useful.
+
+Example:
+
+```text
+                    CLIENT
+                      │
+                      ↓
+                 React App
+                      │
+                      ↓
+                    Axios
+                      │
+                      ↓
+               Express Routes
+                      │
+                      ↓
+              Authentication
+                      │
+                      ↓
+              Authorization
+                      │
+                      ↓
+                Validation
+                      │
+                      ↓
+                 Controller
+                      │
+                      ↓
+                  Service
+                      │
+                      ↓
+                  Mongoose
+                      │
+                      ↓
+                  MongoDB
+                      │
+                      ↓
+                JSON Response
+                      │
+                      ↓
+             React State/Context
+                      │
+                      ↓
+                     UI
+```
+
+---
+
+# 67. FINAL DEVELOPMENT PRINCIPLE
+
+The goal is NOT:
+
+```text
+Use every technology.
+```
+
+The goal is:
+
+```text
+Build every required feature correctly.
+```
+
+The company implementation plan determines:
+
+```text
+WHAT
+```
+
+This reusable specification determines:
+
+```text
+HOW
+```
+
+The final application must be:
+
+```text
+Real
+        ↓
+Full-stack
+        ↓
+Database connected
+        ↓
+API connected
+        ↓
+Secure
+        ↓
+Validated
+        ↓
+Responsive
+        ↓
+Tested
+        ↓
+Maintainable
+        ↓
+Production-style
+```
+
+Never declare the project complete when it is only:
+
+```text
+Static UI
+Mock data
+Folder structure
+Unconnected API
+Placeholder buttons
+Hardcoded dashboard
+Fake CRUD
+```
+
+Build the complete application from the actual company implementation plan and adapt the architecture, models, pages, APIs, roles, business logic, and features to that plan.
