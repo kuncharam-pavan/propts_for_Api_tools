@@ -3,7 +3,7 @@
 This is a reusable implementation specification for building **complete, real-world, production-style MERN applications with Antigravity**.
 
 These rules must be applied whenever an actual company/project implementation plan is provided.
-
+use try catch block
 ---
 
 # 1. MOST IMPORTANT RULE — PROJECT PLAN IS THE SOURCE OF TRUTH
