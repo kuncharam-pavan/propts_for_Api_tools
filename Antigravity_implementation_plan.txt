@@ -4,6 +4,7 @@ This is a reusable implementation specification for building **complete, real-wo
 
 These rules must be applied whenever an actual company/project implementation plan is provided.
 use try catch block
+include the loginand signup and store it in cookies
 ---
 
 # 1. MOST IMPORTANT RULE — PROJECT PLAN IS THE SOURCE OF TRUTH
